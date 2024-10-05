@@ -1,10 +1,5 @@
-import { useQuiz } from "../Context/QuizContext";
-
-function Options({ question }) {
-  const { answer, dispatch } = useQuiz();
-
+function Options({ question, answer, dispatch, points }) {
   const hasAnswered = answer !== null;
-
   return (
     <div className="options">
       {question.options.map((option, index) => (
@@ -15,8 +10,8 @@ function Options({ question }) {
                 ? "correct"
                 : "wrong"
               : ""
-          }`}
-          key={index} // Use the index as a key, or ensure `option` is unique if using it as key
+          } `}
+          key={option}
           onClick={() => dispatch({ type: "newAnswer", payload: index })}
           disabled={hasAnswered}
         >
